@@ -96,8 +96,6 @@ async function fetchSeasonData(year, season) {
   let currentPage = 1;
   let hasNextPage = true;
 
-  // wait for token bucket to refill
-
   try {
     while (hasNextPage) {
       // Implement token bucket algorithm
