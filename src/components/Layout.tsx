@@ -1,8 +1,8 @@
-import { cn } from "@/lib/utils";
 import Head from "next/head";
 import React from "react";
+import Navbar from "./Navigation/Navbar";
 
-function RootLayout({ children }: { children: React.ReactNode }) {
+function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Head>
@@ -11,17 +11,16 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <meta name="description" content="Pinatani" />
         {/* Other meta tags */}
       </Head>
-      <body className="relative min-h-screen antialiased font-sans">
-
+      {/* TODO: Remove default dark mode class */}
+      <div className="relative flex flex-col min-h-screen antialiased font-sans dark bg-background">
         {/* TODO: nav */}
-        <header></header>
-        <main className="relative flex flex-col">{children}</main>
-
+        <Navbar />
+        <main className="relative flex flex-col flex-grow text-foreground">{children}</main>
         {/** TODO: footer */}
         <footer></footer>
-      </body>
+      </div>
     </>
   );
 }
 
-export default RootLayout;
+export default Layout;
