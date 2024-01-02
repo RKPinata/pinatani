@@ -20,8 +20,6 @@ type RelevantSeasons = [
 ];
 
 export function getRelevantSeasons(now: Date): RelevantSeasons {
-  //const now = new Date();
-
   const nextOneSeason = doOperationOnMonth({
     operation: "add",
     date: now,
@@ -56,8 +54,7 @@ export function getRelevantSeasons(now: Date): RelevantSeasons {
   return relevantSeason as RelevantSeasons;
 }
 
-
-function doOperationOnMonth({
+export function doOperationOnMonth({
   operation,
   date,
   months,
@@ -80,7 +77,7 @@ function doOperationOnMonth({
   return newDate;
 }
 
-function getSeasonIndexFromDate(date: Date): number {
+export function getSeasonIndexFromDate(date: Date): number {
   /** Below calculation is based on ratios
    * 12 months / 4 seasons = 3 months per season
    * Converting a maximum value 11 to maximum 3
@@ -90,6 +87,8 @@ function getSeasonIndexFromDate(date: Date): number {
   return Math.floor(month / (12 / 4));
 }
 
-function getSeasonIndexFromName(seasonName: string): number {
-  return seasons.indexOf(seasonName as "winter" | "spring" | "summer" | "fall");
+export function getSeasonIndexFromName(
+  seasonName: "winter" | "spring" | "summer" | "fall"
+): number {
+  return seasons.indexOf(seasonName);
 }
