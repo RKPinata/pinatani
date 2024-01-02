@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "graphql": "^16.8.1",
     "lucide-react": "^0.291.0",
     "next": "14.0.1",
     "react": "^18",

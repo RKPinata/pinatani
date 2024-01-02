@@ -1,8 +1,8 @@
+import client from "@./apolloClient";
+import { ApolloProvider } from "@apollo/client";
 
-function Providers() {
-  return (
-    <div>Providers</div>
-  )
+function Providers({ children }: { children: React.ReactNode }) {
+  return <ApolloProvider client={client}>{children}</ApolloProvider>;
 }
 
-export default Providers
+export default Providers;
