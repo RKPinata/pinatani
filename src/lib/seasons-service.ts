@@ -1,25 +1,31 @@
-const seasons = ["winter", "spring", "summer", "fall"] as const;
+export const SEASONS = ["WINTER", "SPRING", "SUMMER", "FALL"] as const;
+export type TSeason = typeof SEASONS[number];
 
-type RelevantSeasons = [
+export type TRelevantSeasons = [
   {
-    season: "winter";
+    season: (typeof SEASONS)[0];
     year: number;
   },
   {
-    season: "spring";
+    season: (typeof SEASONS)[1];
     year: number;
   },
   {
-    season: "summer";
+    season: (typeof SEASONS)[2];
     year: number;
   },
   {
-    season: "fall";
+    season: (typeof SEASONS)[3];
     year: number;
   }
 ];
 
-export function getRelevantSeasons(now: Date): RelevantSeasons {
+export type TSeasonYearPair = {
+  season: TSeason;
+  year: number;
+}
+
+export function getRelevantSeasons(now: Date): TRelevantSeasons {
   const nextOneSeason = doOperationOnMonth({
     operation: "add",
     date: now,
@@ -41,7 +47,7 @@ export function getRelevantSeasons(now: Date): RelevantSeasons {
   let relevantSeason = [now, nextOneSeason, newTwoSeason, previousSeason].map(
     (date) => {
       return {
-        season: seasons[getSeasonIndexFromDate(date)],
+        season: SEASONS[getSeasonIndexFromDate(date)],
         year: date.getFullYear(),
       };
     }
@@ -51,7 +57,7 @@ export function getRelevantSeasons(now: Date): RelevantSeasons {
     return getSeasonIndexFromName(a.season) - getSeasonIndexFromName(b.season);
   });
 
-  return relevantSeason as RelevantSeasons;
+  return relevantSeason as TRelevantSeasons;
 }
 
 export function doOperationOnMonth({
@@ -87,8 +93,7 @@ export function getSeasonIndexFromDate(date: Date): number {
   return Math.floor(month / (12 / 4));
 }
 
-export function getSeasonIndexFromName(
-  seasonName: "winter" | "spring" | "summer" | "fall"
-): number {
-  return seasons.indexOf(seasonName);
+export function getSeasonIndexFromName(seasonName: TSeason): number {
+  return SEASONS.indexOf(seasonName);
 }
+

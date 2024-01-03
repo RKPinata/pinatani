@@ -7,47 +7,47 @@ import {
 
 describe('seasons-service', () => {
   describe('getRelevantSeasons', () => {
-    it('Winter: should return relevant seasons based winter date', () => {
+    it('WINTER: should return relevant seasons based WINTER date', () => {
       const now = new Date('2023-01-01');
       const relevantSeasons = getRelevantSeasons(now);
       expect(relevantSeasons).toEqual([
-        { season: 'winter', year: 2023 },
-        { season: 'spring', year: 2023 },
-        { season: 'summer', year: 2023 },
-        { season: 'fall', year: 2022 },
+        { season: 'WINTER', year: 2023 },
+        { season: 'SPRING', year: 2023 },
+        { season: 'SUMMER', year: 2023 },
+        { season: 'FALL', year: 2022 },
       ]);
     });
 
-    it("Spring: should return relevant seasons based spring date", () => {
+    it("SPRING: should return relevant seasons based SPRING date", () => {
       const now = new Date("2023-04-01");
       const relevantSeasons = getRelevantSeasons(now);
       expect(relevantSeasons).toEqual([
-        { season: "winter", year: 2023 },
-        { season: "spring", year: 2023 },
-        { season: "summer", year: 2023 },
-        { season: "fall", year: 2023 },
+        { season: "WINTER", year: 2023 },
+        { season: "SPRING", year: 2023 },
+        { season: "SUMMER", year: 2023 },
+        { season: "FALL", year: 2023 },
       ]);
     });
 
-    it("Summer: should return relevant seasons based summer date", () => {
+    it("SUMMER: should return relevant seasons based SUMMER date", () => {
       const now = new Date("2023-07-01");
       const relevantSeasons = getRelevantSeasons(now);
       expect(relevantSeasons).toEqual([
-        { season: "winter", year: 2024 },
-        { season: "spring", year: 2023 },
-        { season: "summer", year: 2023 },
-        { season: "fall", year: 2023 },
+        { season: "WINTER", year: 2024 },
+        { season: "SPRING", year: 2023 },
+        { season: "SUMMER", year: 2023 },
+        { season: "FALL", year: 2023 },
       ]);
     });
 
-    it("Fall: should return relevant seasons based fall date", () => {
+    it("FALL: should return relevant seasons based FALL date", () => {
       const now = new Date("2023-10-01");
       const relevantSeasons = getRelevantSeasons(now);
       expect(relevantSeasons).toEqual([
-        { season: "winter", year: 2024 },
-        { season: "spring", year: 2024 },
-        { season: "summer", year: 2023 },
-        { season: "fall", year: 2023 },
+        { season: "WINTER", year: 2024 },
+        { season: "SPRING", year: 2024 },
+        { season: "SUMMER", year: 2023 },
+        { season: "FALL", year: 2023 },
       ]);
     });
 
@@ -123,54 +123,54 @@ describe('seasons-service', () => {
   });
 
   describe('getSeasonIndexFromDate', () => {
-    it('Winter: return index of the season from winter date', () => {
+    it('WINTER: return index of the season from WINTER date', () => {
       const date = new Date('2023-01-15');
       const seasonIndex = getSeasonIndexFromDate(date);
-      expect(seasonIndex).toBe(0); // winter season index is 0
+      expect(seasonIndex).toBe(0); // WINTER season index is 0
     });
 
-    it("Spring: return index of the season from spring date", () => {
+    it("SPRING: return index of the season from SPRING date", () => {
       const date = new Date("2023-04-15");
       const seasonIndex = getSeasonIndexFromDate(date);
-      expect(seasonIndex).toBe(1); // spring season index is 0
+      expect(seasonIndex).toBe(1); // SPRING season index is 0
     });
 
-    it("Summer: return index of the season from summer date", () => {
+    it("SUMMER: return index of the season from SUMMER date", () => {
       const date = new Date("2023-07-15");
       const seasonIndex = getSeasonIndexFromDate(date);
-      expect(seasonIndex).toBe(2); // summer season index is 0
+      expect(seasonIndex).toBe(2); // SUMMER season index is 0
     });
 
-    it("Fall: return index of the season from fall date", () => {
+    it("FALL: return index of the season from FALL date", () => {
       const date = new Date("2023-10-15");
       const seasonIndex = getSeasonIndexFromDate(date);
-      expect(seasonIndex).toBe(3); // fall season index is 0
+      expect(seasonIndex).toBe(3); // FALL season index is 0
     });
   });
 
   describe('getSeasonIndexFromName', () => {
-    it('Winter: should return the index of the season based on the given season name', () => {
-      const seasonName = 'winter';
+    it('WINTER: should return the index of the season based on the given season name', () => {
+      const seasonName = 'WINTER';
       const seasonIndex = getSeasonIndexFromName(seasonName);
-      expect(seasonIndex).toBe(0); // winter season index is 0
+      expect(seasonIndex).toBe(0); // WINTER season index is 0
     });
 
-    it("Spring: should return the index of the season based on the given season name", () => {
-      const seasonName = "spring";
+    it("SPRING: should return the index of the season based on the given season name", () => {
+      const seasonName = "SPRING";
       const seasonIndex = getSeasonIndexFromName(seasonName);
-      expect(seasonIndex).toBe(1); // spring season index is 1
+      expect(seasonIndex).toBe(1); // SPRING season index is 1
     });
 
-    it("Summer: should return the index of the season based on the given season name", () => {
-      const seasonName = "summer";
+    it("SUMMER: should return the index of the season based on the given season name", () => {
+      const seasonName = "SUMMER";
       const seasonIndex = getSeasonIndexFromName(seasonName);
-      expect(seasonIndex).toBe(2); // summer season index is 2
+      expect(seasonIndex).toBe(2); // SUMMER season index is 2
     }); 
 
-    it("Fall: should return the index of the season based on the given season name", () => {
-      const seasonName = "fall";
+    it("FALL: should return the index of the season based on the given season name", () => {
+      const seasonName = "FALL";
       const seasonIndex = getSeasonIndexFromName(seasonName);
-      expect(seasonIndex).toBe(3); // fall season index is 3
+      expect(seasonIndex).toBe(3); // FALL season index is 3
     });
   });
 });
