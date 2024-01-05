@@ -1,7 +1,7 @@
-import { gql } from "@apollo/client";
+import { gql } from "@/__generated__/gql";
 
-export const getSelectedSeasons = gql`
-  query GetSelectedSeasons(
+export const GET_SELECTED_SEASONS = gql(`
+  query GET_SELECTED_SEASONS(
     $page: Int
     $perPage: Int
     $season: MediaSeason
@@ -9,24 +9,30 @@ export const getSelectedSeasons = gql`
   ) {
     Page(page: $page, perPage: $perPage) {
       pageInfo {
-        total
         currentPage
-        lastPage
         hasNextPage
-        perPage
+        lastPage
       }
-      media(season: $season, seasonYear: $seasonYear) {
+      media(
+        season: $season
+        seasonYear: $seasonYear
+        type: ANIME
+        isAdult: false
+        sort: POPULARITY_DESC
+      ) {
         id
-        idMal
         status
         title {
           romaji
           english
           native
         }
+        coverImage {
+          extraLarge
+          large
+        }
         type
         genres
-        bannerImage
         status
         episodes
         nextAiringEpisode {
@@ -34,7 +40,12 @@ export const getSelectedSeasons = gql`
           timeUntilAiring
           episode
         }
+        startDate {
+          day
+          month
+          year
+        }
       }
     }
   }
-`;
+`);

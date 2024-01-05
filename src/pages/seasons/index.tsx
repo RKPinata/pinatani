@@ -1,59 +1,29 @@
-import SeasonsSelector from "@./src/components/Seasons/SeasonsSelector";
-import PageContainer from "@./src/components/UI/PageContainer";
-import { getSelectedSeasons } from "@./src/lib/api/queries";
 import {
-  TRelevantSeasons,
-  TSeason,
   TSeasonYearPair,
   getRelevantSeasons,
   getSeasonIndexFromDate,
-  getSeasonIndexFromName,
-} from "@./src/lib/seasons-service";
-import { useQuery } from "@apollo/client";
-import { useCallback, useState } from "react";
+} from "@/lib/seasons-service";
+import { generateParamFromSeasonYearPair } from "@/lib/utils";
+
+/**
+ * This Page never gets rendered, it only redirects to the current season.
+ */
+export const getServerSideProps = () => {
+  const now = new Date();
+  const relevantSeasons = getRelevantSeasons(now);
+  const currentSeason: TSeasonYearPair =
+    relevantSeasons[getSeasonIndexFromDate(now)];
+
+  return {
+    redirect: {
+      destination: `/seasons/${generateParamFromSeasonYearPair(currentSeason)}`,
+      permanent: false,
+    },
+  };
+};
 
 function Seasons() {
-  const now = new Date();
-  const relevantSeasons: TRelevantSeasons = getRelevantSeasons(now);
-
-  const [selectedSeasonIndex, setSelectedSeasonIndex] = useState<number>(
-    getSeasonIndexFromDate(now)
-  );
-
-  const getSelectedSeason: () => TSeasonYearPair = useCallback(() => {
-    return relevantSeasons[selectedSeasonIndex];
-  }, [relevantSeasons, selectedSeasonIndex]);
-
-  const onSelectSeason = (season: TSeason): void => {
-    setSelectedSeasonIndex(getSeasonIndexFromName(season));
-  };
-
-  const { loading, error, data } = useQuery(getSelectedSeasons, {
-    variables: {
-      page: 1,
-      perPage: 15,
-      season: getSelectedSeason().season,
-      seasonYear: getSelectedSeason().year,
-    },
-  });
-
-  return (
-    <PageContainer>
-      {/* {data.Page.media.map((media: any) => {
-        return (
-          <div key={media.id}>
-            <p>{media.title.english}</p>
-          </div>
-        );
-      })} */}
-      <SeasonsSelector
-        relevantSeasons={relevantSeasons}
-        selectedSeason={getSelectedSeason()}
-        selectSeason={onSelectSeason}
-      />
-      
-    </PageContainer>
-  );
+  return <div>Seasons</div>;
 }
 
 export default Seasons;

@@ -14,10 +14,9 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@./*": ["./*"], // root path
-      "@/*": ["./src/*"],
       "@public/*": ["./public/*"],
-      "@components/*": ["./src/components/*"],
+      "@/*": ["./src/*"],
+      "@./*": ["./*"], // root path
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
