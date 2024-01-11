@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { TSeason, TSeasonYearPair } from "./seasons-service";
+import { TSeason, TSeasonYearPair } from "./types/seasons.types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -24,6 +24,6 @@ export function generateParamFromSeasonYearPair(
   seasonYearPair: TSeasonYearPair
 ): string {
   const { season, year } = seasonYearPair;
-  
+
   return `${String(season).toLocaleLowerCase()}-${year}`;
 }

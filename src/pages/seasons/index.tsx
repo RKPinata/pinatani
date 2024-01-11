@@ -1,8 +1,8 @@
 import {
-  TSeasonYearPair,
   getRelevantSeasons,
   getSeasonIndexFromDate,
 } from "@/lib/seasons-service";
+import { TSeasonYearPair } from "@/lib/types/seasons.types";
 import { generateParamFromSeasonYearPair } from "@/lib/utils";
 
 /**

@@ -1,29 +1,6 @@
+import { TRelevantSeasons, TSeason } from "./types/seasons.types";
+
 export const SEASONS = ["WINTER", "SPRING", "SUMMER", "FALL"] as const;
-export type TSeason = typeof SEASONS[number];
-
-export type TRelevantSeasons = [
-  {
-    season: (typeof SEASONS)[0];
-    year: number;
-  },
-  {
-    season: (typeof SEASONS)[1];
-    year: number;
-  },
-  {
-    season: (typeof SEASONS)[2];
-    year: number;
-  },
-  {
-    season: (typeof SEASONS)[3];
-    year: number;
-  }
-];
-
-export type TSeasonYearPair = {
-  season: TSeason;
-  year: number;
-}
 
 export function getRelevantSeasons(now: Date): TRelevantSeasons {
   const nextOneSeason = doOperationOnMonth({
@@ -96,4 +73,3 @@ export function getSeasonIndexFromDate(date: Date): number {
 export function getSeasonIndexFromName(seasonName: TSeason): number {
   return SEASONS.indexOf(seasonName);
 }
-

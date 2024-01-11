@@ -1,6 +1,7 @@
 import SeasonAnimeList from "@/components/Seasons/SeasonAnimeList";
 import PageContainer from "@/components/UI/PageContainer";
-import { TRelevantSeasons, getRelevantSeasons } from "@/lib/seasons-service";
+import { getRelevantSeasons } from "@/lib/seasons-service";
+import { TRelevantSeasons } from "@/lib/types/seasons.types";
 import { extractSeasonAndYearFromParam } from "@/lib/utils";
 import { useRouter } from "next/router";
 

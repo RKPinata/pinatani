@@ -28,8 +28,9 @@ export const GET_SELECTED_SEASONS = gql(`
           native
         }
         coverImage {
+          color
+          medium
           extraLarge
-          large
         }
         type
         genres
