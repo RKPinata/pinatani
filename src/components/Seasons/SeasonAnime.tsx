@@ -29,6 +29,7 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
             visibility: imageIsLoading ? "visible" : "hidden",
           }}
         />
+        {/** Full image */}
         <Image
           src={media.coverImage?.extraLarge ? media.coverImage.extraLarge : ""}
           alt={`${media.title?.english} cover image`}
