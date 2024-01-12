@@ -73,8 +73,9 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       gridTemplateColumns: {
-        seasonListSm: "repeat(3, minmax(0, 230px))",
-        seasonListLg: "repeat(4, minmax(0, 230px))",
+        seasonListMobile: "repeat(2, minmax(0, 160px))",
+        seasonListSm: "repeat(3, minmax(0, 200px))",
+        seasonListLg: "repeat(4, minmax(0, 200px))",
       },
     },
   },

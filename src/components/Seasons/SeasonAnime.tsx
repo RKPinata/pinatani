@@ -13,13 +13,13 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
 
   return (
     <div className="max-w-[230px]">
-      <div className="relative w-[230px] h-[332px] rounded-md overflow-hidden">
+      <div className="relative w-[160px] h-[240px] sm:w-[200px] sm:h-[300px] rounded-md overflow-hidden">
         {/** Preview Image */}
         <Image
           src={media.coverImage?.medium ? media.coverImage.medium : ""}
           alt={`${media.title?.english} cover image`}
           fill={true}
-          sizes="230px 332px"
+          sizes="200px 300px"
           onLoad={() => setPreviewLoaded(true)}
           className={cn("z-[1] object-cover object-center", {
             "blur-sm": previewLoaded,
@@ -34,7 +34,7 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
           src={media.coverImage?.extraLarge ? media.coverImage.extraLarge : ""}
           alt={`${media.title?.english} cover image`}
           fill={true}
-          sizes="230px 332px"
+          sizes="200px 300px"
           onLoad={() => {
             setImageLoaded(true);
           }}
@@ -48,7 +48,7 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
         />
       </div>
 
-      <h3>{media.title?.english}</h3>
+      <h3>{media.title?.english || media.title?.romaji || media.title?.native}</h3>
       <p>{media.startDate?.day}</p>
       <p>{media.startDate?.month}</p>
       <p>{media.startDate?.year}</p>
