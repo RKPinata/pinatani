@@ -1,7 +1,10 @@
 import { Media } from "@/__generated__/graphql";
+import { Badge } from "@/components/shadcn/ui/badge";
 import { cn } from "@/lib/utils";
+import { Info } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { Button } from "../shadcn/ui/button";
 
 function SeasonAnime({ media }: { media: NonNullable<Media> }) {
   const [previewLoaded, setPreviewLoaded] = useState<Boolean>(false);
@@ -12,7 +15,7 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
     : "hsl(0 0% 15%)";
 
   return (
-    <div className="max-w-[230px]">
+    <div className="max-w-[230px] bg-card rounded-md">
       <div className="relative w-[160px] h-[240px] sm:w-[200px] sm:h-[300px] rounded-md overflow-hidden">
         {/** Preview Image */}
         <Image
@@ -48,10 +51,41 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
         />
       </div>
 
-      <h3>{media.title?.english || media.title?.romaji || media.title?.native}</h3>
-      <p>{media.startDate?.day}</p>
-      <p>{media.startDate?.month}</p>
-      <p>{media.startDate?.year}</p>
+      <div className="px-3 py-3 flex flex-col gap-4">
+        <div className="border-b pb-2">
+          <h3 className="h-[40px] overflow-hidden line-clamp-2 text-sm font-semibold text-stone-300">
+            {media.title?.english ||
+              media.title?.romaji ||
+              media.title?.native ||
+              "Title Unavailable"}
+          </h3>
+        </div>
+        <div className="flex flex-wrap items-start gap-1 h-[48px] overflow-hidden">
+          {media.genres?.length === 0 ? (
+            <Badge variant="secondary">Unknown</Badge>
+          ) : (
+            media.genres?.map((genre) => {
+              return (
+                <Badge variant="outline" key={genre} className="text-stone-400">
+                  {genre}
+                </Badge>
+              );
+            })
+          )}
+        </div>
+        <div className="flex gap-2">
+          <Button
+            className="flex-1 border-none rounded-full text-sm text-slate-300"
+            variant="secondary"
+            size="sm"
+          >
+            Add To Watchlist
+          </Button>
+          <button className="text-slate-300">
+            <Info />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
