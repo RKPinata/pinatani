@@ -1,9 +1,7 @@
-import {
-  Media,
-  MediaSeason
-} from "@/__generated__/graphql";
+import { Media, MediaSeason } from "@/__generated__/graphql";
 import { GET_SELECTED_SEASONS } from "@/lib/api/queries";
-import { TRelevantSeasons, TSeasonYearPair } from "@/lib/seasons-service";
+
+import { TRelevantSeasons, TSeasonYearPair } from "@/lib/types/seasons.types";
 import { useQuery } from "@apollo/client";
 import SeasonAnime from "./SeasonAnime";
 import SeasonsSelector from "./SeasonsSelector";

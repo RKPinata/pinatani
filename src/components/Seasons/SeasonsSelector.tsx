@@ -1,7 +1,4 @@
-import {
-  TRelevantSeasons,
-  TSeasonYearPair
-} from "@./src/lib/seasons-service";
+import { TRelevantSeasons, TSeasonYearPair } from "@/lib/types/seasons.types";
 import {
   Select,
   SelectContent,
@@ -10,7 +7,10 @@ import {
   SelectValue,
 } from "../shadcn/ui/select";
 
-import { capitalizeFirstLetter, generateParamFromSeasonYearPair } from "@./src/lib/utils";
+import {
+  capitalizeFirstLetter,
+  generateParamFromSeasonYearPair,
+} from "@./src/lib/utils";
 
 interface SeasonsSelectorProps {
   relevantSeasons: TRelevantSeasons;
