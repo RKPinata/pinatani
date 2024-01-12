@@ -19,10 +19,9 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
           src={media.coverImage?.medium ? media.coverImage.medium : ""}
           alt={`${media.title?.english} cover image`}
           fill={true}
-          objectFit="cover"
-          objectPosition="center"
-          onLoadingComplete={() => setPreviewLoaded(true)}
-          className={cn("z-[1] ", {
+          sizes="230px 332px"
+          onLoad={() => setPreviewLoaded(true)}
+          className={cn("z-[1] object-cover object-center", {
             "blur-sm": previewLoaded,
           })}
           style={{
@@ -35,13 +34,12 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
           src={media.coverImage?.extraLarge ? media.coverImage.extraLarge : ""}
           alt={`${media.title?.english} cover image`}
           fill={true}
-          objectFit="cover"
-          objectPosition="center"
-          onLoadingComplete={() => {
+          sizes="230px 332px"
+          onLoad={() => {
             setImageLoaded(true);
           }}
           className={cn(
-            "z-[2] bg-transparent transition-opacity duration-500 ease-in",
+            "z-[2] object-cover object-center bg-transparent transition-opacity duration-500 ease-in ",
             {
               "opacity-0": !imageLoaded,
               "opacity-1": imageLoaded,
