@@ -32,7 +32,7 @@ function SeasonsSelector({
           selectSeason(value);
         }}
       >
-        <SelectTrigger className="rounded-full w-full sm:w-[160px] px-5">
+        <SelectTrigger className="sm:w-[160px] px-5 rounded-full w-full shadow-xl">
           <SelectValue
             defaultValue={generateParamFromSeasonYearPair(selectedSeason)}
             placeholder={`${capitalizeFirstLetter(selectedSeason.season)} ${

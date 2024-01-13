@@ -1,6 +1,5 @@
 import Head from "next/head";
 import React from "react";
-import Navbar from "./Navigation/Navbar";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -14,7 +13,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       {/* TODO: Remove default dark mode class */}
       <div className="relative flex flex-col min-h-screen antialiased font-sans dark bg-background">
         {/* TODO: nav */}
-        <Navbar />
+        {/* <Navbar /> */}
         <main className="relative flex flex-col flex-grow text-foreground">{children}</main>
         {/** TODO: footer */}
         <footer></footer>

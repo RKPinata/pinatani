@@ -3,26 +3,25 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
+  DrawerTrigger
 } from "@/components/shadcn/ui/drawer";
 
-function SeasonAnimeInfoDrawer() {
+import React from "react";
+
+function SeasonAnimeInfoDrawer({ children }: { children: React.ReactNode }) {
   return (
     <Drawer>
-      <DrawerTrigger>Open</DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Are you sure absolutely sure?</DrawerTitle>
-          <DrawerDescription>This action cannot be undone.</DrawerDescription>
+      <DrawerTrigger>{children}</DrawerTrigger>
+      <DrawerContent className="h-[60vh]">
+        <DrawerHeader >
+          <DrawerTitle>Work in Progress</DrawerTitle>
         </DrawerHeader>
         <DrawerFooter>
-          <Button>Submit</Button>
           <DrawerClose>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline">Close</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

@@ -32,7 +32,7 @@ export const GET_SELECTED_SEASONS = gql(`
           medium
           extraLarge
         }
-        type
+        format
         genres
         status
         episodes
