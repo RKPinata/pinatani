@@ -1,10 +1,8 @@
 import { Media } from "@/__generated__/graphql";
 import { Badge } from "@/components/shadcn/ui/badge";
 import { cn } from "@/lib/utils";
-import { Info } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { Button } from "../shadcn/ui/button";
 
 function SeasonAnime({ media }: { media: NonNullable<Media> }) {
   const [previewLoaded, setPreviewLoaded] = useState<Boolean>(false);
@@ -16,7 +14,7 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
 
   return (
     <div className="max-w-[230px] bg-card rounded-md">
-      <div className="relative w-[160px] h-[240px] sm:w-[200px] sm:h-[300px] rounded-md overflow-hidden">
+      <div className="relative w-[160px] h-[240px] sm:w-[200px] sm:h-[300px] rounded-md overflow-hidden ">
         {/** Preview Image */}
         <Image
           src={media.coverImage?.medium ? media.coverImage.medium : ""}
@@ -42,17 +40,22 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
             setImageLoaded(true);
           }}
           className={cn(
-            "z-[2] object-cover object-center bg-transparent transition-opacity duration-500 ease-in ",
+            "z-[2] object-cover object-center bg-transparent transition-opacity duration-500 ease-in",
             {
               "opacity-0": !imageLoaded,
               "opacity-1": imageLoaded,
             }
           )}
         />
+        {/* Overlay */}
+        <Badge variant='secondary' className="absolute z-[3] bottom-1 left-2 font-semibold text-foreground">
+          {media.format ? media.format : ""}
+        </Badge>
       </div>
 
-      <div className="px-3 py-3 flex flex-col gap-4">
-        <div className="border-b pb-2">
+      {/** Content */}
+      <div className="px-3 py-3 flex flex-col gap-3">
+        <div className="border-b pb-3">
           <h3 className="h-[40px] overflow-hidden line-clamp-2 text-sm font-semibold text-stone-300">
             {media.title?.english ||
               media.title?.romaji ||
@@ -62,7 +65,7 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
         </div>
         <div className="flex flex-wrap items-start gap-1 h-[48px] overflow-hidden">
           {media.genres?.length === 0 ? (
-            <Badge variant="secondary">Unknown</Badge>
+            <Badge variant="secondary" className="text-stone-400">Unknown</Badge>
           ) : (
             media.genres?.map((genre) => {
               return (
@@ -72,18 +75,6 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
               );
             })
           )}
-        </div>
-        <div className="flex gap-2">
-          <Button
-            className="flex-1 border-none rounded-full text-sm text-slate-300"
-            variant="secondary"
-            size="sm"
-          >
-            Add To Watchlist
-          </Button>
-          <button className="text-slate-300">
-            <Info />
-          </button>
         </div>
       </div>
     </div>

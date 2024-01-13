@@ -6,6 +6,7 @@ import { TRelevantSeasons, TSeasonYearPair } from "@/lib/types/seasons.types";
 import { useQuery } from "@apollo/client";
 import { useEffect, useMemo, useRef } from "react";
 import SeasonAnime from "./SeasonAnime";
+import SeasonAnimeInfoDrawer from "./SeasonAnimeInfoDrawer";
 import SeasonsSelector from "./SeasonsSelector";
 
 interface SeasonAnimeListProps {
@@ -31,7 +32,7 @@ function SeasonAnimeList({
   const bottomBoundaryRef = useRef<HTMLDivElement | null>(null);
   const entry = useIntersectionObserver(bottomBoundaryRef, {
     threshold: 1,
-    rootMargin: '50%'
+    rootMargin: "50%",
   });
   const isIntersecting = useMemo(() => entry?.isIntersecting || false, [entry]);
 
@@ -39,7 +40,7 @@ function SeasonAnimeList({
     if (isIntersecting && data?.Page?.pageInfo?.hasNextPage) {
       fetchMore({
         variables: {
-          page: data?.Page?.pageInfo?.currentPage! + 1
+          page: data?.Page?.pageInfo?.currentPage! + 1,
         },
         // The updateQuery function is used to merge the result of the new query with the existing data.
         updateQuery: (prevData, { fetchMoreResult }) => {
@@ -66,18 +67,25 @@ function SeasonAnimeList({
         relevantSeasons={relevantSeasons}
         selectedSeason={selectedSeason}
         selectSeason={selectSeason}
-        className="col-span-2 sm:col-span-3 lg:col-span-4"
+        className="sticky z-10 top-4 md:top-10 col-span-2 sm:col-span-3 lg:col-span-4"
       />
       {loading ? (
         <p>Loading...</p>
-      ) : (
-        data?.Page?.media ?
+      ) : data?.Page?.media ? (
         data.Page.media.map((anime) => {
           return (
-            <SeasonAnime key={anime?.id} media={anime as NonNullable<Media>} />
+            <SeasonAnimeInfoDrawer key={anime?.id}>
+              <SeasonAnime
+                key={anime?.id}
+                media={anime as NonNullable<Media>}
+              />
+            </SeasonAnimeInfoDrawer>
           );
-        }) : <p>No anime found</p>
+        })
+      ) : (
+        <p>No anime found</p>
       )}
+      {/* TODO: Loading animation */}
       <div ref={bottomBoundaryRef}></div>
     </div>
   );
