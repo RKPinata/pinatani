@@ -1,8 +1,6 @@
 import {
-  getRelevantSeasons,
-  getSeasonIndexFromDate,
+  getCurrentAndRelevantSeasons
 } from "@/lib/seasons-service";
-import { TSeasonYearPair } from "@/lib/types/seasons.types";
 import { generateParamFromSeasonYearPair } from "@/lib/utils";
 
 /**
@@ -10,9 +8,7 @@ import { generateParamFromSeasonYearPair } from "@/lib/utils";
  */
 export const getServerSideProps = () => {
   const now = new Date();
-  const relevantSeasons = getRelevantSeasons(now);
-  const currentSeason: TSeasonYearPair =
-    relevantSeasons[getSeasonIndexFromDate(now)];
+  const { currentSeason } = getCurrentAndRelevantSeasons(now);
 
   return {
     redirect: {

@@ -1,6 +1,17 @@
-import { TRelevantSeasons, TSeason } from "./types/seasons.types";
+import { TRelevantSeasons, TSeason, TSeasonYearPair } from "./types/seasons.types";
 
 export const SEASONS = ["WINTER", "SPRING", "SUMMER", "FALL"] as const;
+
+export function getCurrentAndRelevantSeasons(now: Date) {
+  const relevantSeasons = getRelevantSeasons(now);
+  const currentSeason: TSeasonYearPair =
+    relevantSeasons[getSeasonIndexFromDate(now)];
+
+  return {
+    currentSeason,
+    relevantSeasons,
+  }
+}
 
 export function getRelevantSeasons(now: Date): TRelevantSeasons {
   const nextOneSeason = doOperationOnMonth({

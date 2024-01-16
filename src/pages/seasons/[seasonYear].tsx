@@ -1,14 +1,13 @@
 import SeasonAnimeList from "@/components/Seasons/SeasonAnimeList";
 import PageContainer from "@/components/UI/PageContainer";
-import { getRelevantSeasons } from "@/lib/seasons-service";
-import { TRelevantSeasons } from "@/lib/types/seasons.types";
+import { getCurrentAndRelevantSeasons } from "@/lib/seasons-service";
 import { extractSeasonAndYearFromParam } from "@/lib/utils";
 import { useRouter } from "next/router";
 
 function SeasonYear() {
   const router = useRouter();
   const now = new Date();
-  const relevantSeasons: TRelevantSeasons = getRelevantSeasons(now);
+  const { relevantSeasons } = getCurrentAndRelevantSeasons(now);
   const seasonYearParam = router.query.seasonYear as string;
 
   /** Url Param are not available on first render
