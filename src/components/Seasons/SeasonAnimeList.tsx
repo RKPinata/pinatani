@@ -1,12 +1,18 @@
-import { Media, MediaSeason } from "@/__generated__/graphql";
+import { MediaSeason } from "@/__generated__/graphql";
 import { GET_SELECTED_SEASONS } from "@/lib/api/queries";
 
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-import { TRelevantSeasons, TSeasonYearPair } from "@/lib/types/seasons.types";
+import { useWindowSize } from "@/hooks/useWindowSize";
+import {
+  TRelevantSeasons,
+  TSeasonYearPair,
+  TSelectedSeasonsQueryMedia,
+} from "@/lib/types/seasons.types";
 import { useQuery } from "@apollo/client";
 import { useEffect, useMemo, useRef } from "react";
 import SeasonAnime from "./SeasonAnime";
 import SeasonAnimeInfoDrawer from "./SeasonAnimeInfoDrawer";
+import SeasonAnimeInfoModal from "./SeasonAnimeInfoModal";
 import SeasonsSelector from "./SeasonsSelector";
 
 interface SeasonAnimeListProps {
@@ -65,6 +71,12 @@ function SeasonAnimeList({
     }
   }, [isIntersecting, data, fetchMore]);
 
+  /** Check window size */
+  const { width } = useWindowSize();
+  const isTabletAndSmaller = useMemo(() => {
+    return width <= 640;
+  }, [width]);
+
   return (
     <div className="grid justify-center grid-cols-seasonListMobile gap-4 sm:grid-cols-seasonListSm sm:gap-4 md:gap-5 lg:grid-cols-seasonListLg xl:gap-6">
       <SeasonsSelector
@@ -76,21 +88,25 @@ function SeasonAnimeList({
       {loading ? (
         <p>Loading...</p>
       ) : data?.Page?.media ? (
-        data.Page.media.map((anime) => {
-          return (
+        data?.Page?.media?.map((anime: TSelectedSeasonsQueryMedia) => {
+          if (anime === null) {
+            return null;
+          }
+          return isTabletAndSmaller ? (
             <SeasonAnimeInfoDrawer key={anime?.id}>
-              <SeasonAnime
-                key={anime?.id}
-                media={anime as NonNullable<Media>}
-              />
+              <SeasonAnime key={anime?.id} media={anime} />
             </SeasonAnimeInfoDrawer>
+          ) : (
+            <SeasonAnimeInfoModal key={anime?.id}>
+              <SeasonAnime key={anime?.id} media={anime} />
+            </SeasonAnimeInfoModal>
           );
         })
       ) : (
         <p>No anime found</p>
       )}
       {/* TODO: Loading animation */}
-      <div ref={bottomBoundaryRef} aria-hidden='true'></div>
+      <div ref={bottomBoundaryRef} aria-hidden="true"></div>
     </div>
   );
 }
