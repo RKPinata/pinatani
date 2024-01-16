@@ -1,10 +1,14 @@
-import { Media } from "@/__generated__/graphql";
 import { Badge } from "@/components/shadcn/ui/badge";
+import { TSelectedSeasonsQueryMedia } from "@/lib/types/seasons.types";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 
-function SeasonAnime({ media }: { media: NonNullable<Media> }) {
+function SeasonAnime({
+  media,
+}: {
+  media: NonNullable<TSelectedSeasonsQueryMedia>;
+}) {
   const [previewLoaded, setPreviewLoaded] = useState<Boolean>(false);
   const [imageLoaded, setImageLoaded] = useState<Boolean>(false);
 
@@ -48,7 +52,10 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
           )}
         />
         {/* Overlay */}
-        <Badge variant='secondary' className="absolute z-[3] bottom-1 left-2 font-semibold text-foreground">
+        <Badge
+          variant="secondary"
+          className="absolute z-[3] bottom-1 left-2 font-semibold text-foreground"
+        >
           {media.format ? media.format : ""}
         </Badge>
       </div>
@@ -65,7 +72,9 @@ function SeasonAnime({ media }: { media: NonNullable<Media> }) {
         </div>
         <div className="flex flex-wrap items-start gap-1 h-[48px] overflow-hidden">
           {media.genres?.length === 0 ? (
-            <Badge variant="secondary" className="text-stone-400">Unknown</Badge>
+            <Badge variant="secondary" className="text-stone-400">
+              Unknown
+            </Badge>
           ) : (
             media.genres?.map((genre) => {
               return (

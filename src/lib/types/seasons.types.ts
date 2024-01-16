@@ -1,22 +1,25 @@
-import { SEASONS } from "../seasons-service";
+import {
+  Get_Selected_SeasonsQuery,
+  MediaSeason,
+} from "@/__generated__/graphql";
 
-export type TSeason = (typeof SEASONS)[number];
+export type TSeason = MediaSeason;
 
 export type TRelevantSeasons = [
   {
-    season: (typeof SEASONS)[0];
+    season: MediaSeason.Winter;
     year: number;
   },
   {
-    season: (typeof SEASONS)[1];
+    season: MediaSeason.Spring;
     year: number;
   },
   {
-    season: (typeof SEASONS)[2];
+    season: MediaSeason.Summer;
     year: number;
   },
   {
-    season: (typeof SEASONS)[3];
+    season: MediaSeason.Fall;
     year: number;
   }
 ];
@@ -27,3 +30,18 @@ export type TSeasonYearPair = {
 };
 
 export type TSeasonYearPairString = `${TSeason}-${number}`;
+
+/** This some serious type acrobatics (╯°□°）╯︵ ┻━┻
+ * referring to the Get_Selected_SeasonsQuery in src/__generated__/graphql.ts
+ * TSelectedSeasonsQueryPage is the type of the Page from the query
+ * TSelectedSeasonsQueryMedia is the type of the media from media array
+ */
+export type TSelectedSeasonsQueryPage = NonNullable<
+  Get_Selected_SeasonsQuery["Page"]
+>;
+
+export type TSelectedSeasonsQueryMedia = NonNullable<
+  TSelectedSeasonsQueryPage["media"]
+>[number];
+
+
