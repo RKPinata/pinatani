@@ -29,6 +29,10 @@ function SeasonAnimeList({
     },
   });
 
+  /** Intersection observer setup
+   * to fetch more data when the user reaches the bottom of the page
+   * which is referenced by the bottomBoundaryRef
+   */
   const bottomBoundaryRef = useRef<HTMLDivElement | null>(null);
   const entry = useIntersectionObserver(bottomBoundaryRef, {
     threshold: 1,
@@ -86,7 +90,7 @@ function SeasonAnimeList({
         <p>No anime found</p>
       )}
       {/* TODO: Loading animation */}
-      <div ref={bottomBoundaryRef}></div>
+      <div ref={bottomBoundaryRef} aria-hidden='true'></div>
     </div>
   );
 }
