@@ -1,6 +1,9 @@
 import MaxWidthContainer from "@/components/UI/MaxWidthContainer";
-import { getCurrentAndRelevantSeasons } from "@/lib/seasons-service";
-import { generateParamFromSeasonYearPair } from "@/lib/utils";
+import {
+  generateParamFromSeasonYearPair,
+  getCurrentAndRelevantSeasons,
+} from "@/lib/seasons-utils";
+
 import { GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async () => {

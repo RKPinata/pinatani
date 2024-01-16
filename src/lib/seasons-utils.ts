@@ -87,3 +87,21 @@ export function getSeasonIndexFromDate(date: Date): number {
 export function getSeasonIndexFromName(seasonName: TSeason): number {
   return SEASONS.indexOf(seasonName);
 }
+
+export function extractSeasonAndYearFromParam(param: string): TSeasonYearPair {
+  // eg: "winter-2021" path: /seasons/winter-2021
+  const [season, year] = param.split("-");
+
+  return {
+    season: season.toUpperCase() as TSeason,
+    year: parseInt(year),
+  };
+}
+
+export function generateParamFromSeasonYearPair(
+  seasonYearPair: TSeasonYearPair
+): string {
+  const { season, year } = seasonYearPair;
+
+  return `${String(season).toLocaleLowerCase()}-${year}`;
+}

@@ -7,10 +7,8 @@ import {
   SelectValue,
 } from "../shadcn/ui/select";
 
-import {
-  capitalizeFirstLetter,
-  generateParamFromSeasonYearPair,
-} from "@./src/lib/utils";
+import { capitalizeFirstLetter } from "@./src/lib/utils";
+import { generateParamFromSeasonYearPair } from "@/lib/seasons-utils";
 
 interface SeasonsSelectorProps {
   relevantSeasons: TRelevantSeasons;

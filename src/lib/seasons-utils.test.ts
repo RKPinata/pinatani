@@ -5,7 +5,7 @@ import {
   getRelevantSeasons,
   getSeasonIndexFromDate,
   getSeasonIndexFromName,
-} from "./seasons-service";
+} from "./seasons-utils";
 
 describe("seasons-service", () => {
   describe("getCurrentAndRelevantSeasons", () => {
