@@ -1,6 +1,9 @@
-import { TRelevantSeasons, TSeason, TSeasonYearPair } from "./types/seasons.types";
-
-export const SEASONS = ["WINTER", "SPRING", "SUMMER", "FALL"] as const;
+import { SEASONS } from "./constants/seasons.contants";
+import {
+  TRelevantSeasons,
+  TSeason,
+  TSeasonYearPair,
+} from "./types/seasons.types";
 
 export function getCurrentAndRelevantSeasons(now: Date) {
   const relevantSeasons = getRelevantSeasons(now);
@@ -10,7 +13,7 @@ export function getCurrentAndRelevantSeasons(now: Date) {
   return {
     currentSeason,
     relevantSeasons,
-  }
+  };
 }
 
 export function getRelevantSeasons(now: Date): TRelevantSeasons {

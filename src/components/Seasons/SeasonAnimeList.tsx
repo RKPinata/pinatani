@@ -1,4 +1,3 @@
-import { MediaSeason } from "@/__generated__/graphql";
 import { GET_SELECTED_SEASONS } from "@/lib/api/queries";
 
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
@@ -30,7 +29,7 @@ function SeasonAnimeList({
     variables: {
       page: 1,
       perPage: 30,
-      season: selectedSeason.season as MediaSeason,
+      season: selectedSeason.season,
       seasonYear: selectedSeason.year,
     },
   });
