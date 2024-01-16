@@ -1,21 +1,76 @@
 import { MediaSeason } from "@/__generated__/graphql";
 import {
   doOperationOnMonth,
+  getCurrentAndRelevantSeasons,
   getRelevantSeasons,
   getSeasonIndexFromDate,
   getSeasonIndexFromName,
 } from "./seasons-service";
 
 describe("seasons-service", () => {
+  describe("getCurrentAndRelevantSeasons", () => {
+    it("WINTER: should return current and relevant seasons based on WINTER date", () => {
+      const now = new Date("2023-01-01");
+      const { currentSeason, relevantSeasons } =
+        getCurrentAndRelevantSeasons(now);
+      expect(currentSeason).toEqual({ season: MediaSeason.Winter, year: 2023 });
+      expect(relevantSeasons).toEqual([
+        { season: MediaSeason.Winter, year: 2023 },
+        { season: MediaSeason.Spring, year: 2023 },
+        { season: MediaSeason.Summer, year: 2023 },
+        { season: MediaSeason.Fall, year: 2022 },
+      ]);
+    });
+
+    it("SPRING: should return current and relevant seasons based on SPRING date", () => {
+      const now = new Date("2023-04-01");
+      const { currentSeason, relevantSeasons } =
+        getCurrentAndRelevantSeasons(now);
+      expect(currentSeason).toEqual({ season: MediaSeason.Spring, year: 2023 });
+      expect(relevantSeasons).toEqual([
+        { season: MediaSeason.Winter, year: 2023 },
+        { season: MediaSeason.Spring, year: 2023 },
+        { season: MediaSeason.Summer, year: 2023 },
+        { season: MediaSeason.Fall, year: 2023 },
+      ]);
+    });
+
+    it("SUMMER: should return current and relevant seasons based on SUMMER date", () => {
+      const now = new Date("2023-07-01");
+      const { currentSeason, relevantSeasons } =
+        getCurrentAndRelevantSeasons(now);
+      expect(currentSeason).toEqual({ season: MediaSeason.Summer, year: 2023 });
+      expect(relevantSeasons).toEqual([
+        { season: MediaSeason.Winter, year: 2024 },
+        { season: MediaSeason.Spring, year: 2023 },
+        { season: MediaSeason.Summer, year: 2023 },
+        { season: MediaSeason.Fall, year: 2023 },
+      ]);
+    });
+
+    it("FALL: should return current and relevant seasons based on FALL date", () => {
+      const now = new Date("2023-10-01");
+      const { currentSeason, relevantSeasons } =
+        getCurrentAndRelevantSeasons(now);
+      expect(currentSeason).toEqual({ season: MediaSeason.Fall, year: 2023 });
+      expect(relevantSeasons).toEqual([
+        { season: MediaSeason.Winter, year: 2024 },
+        { season: MediaSeason.Spring, year: 2024 },
+        { season: MediaSeason.Summer, year: 2023 },
+        { season: MediaSeason.Fall, year: 2023 },
+      ]);
+    });
+  });
+
   describe("getRelevantSeasons", () => {
     it("WINTER: should return relevant seasons based WINTER date", () => {
       const now = new Date("2023-01-01");
       const relevantSeasons = getRelevantSeasons(now);
       expect(relevantSeasons).toEqual([
-        { season: "WINTER", year: 2023 },
-        { season: "SPRING", year: 2023 },
-        { season: "SUMMER", year: 2023 },
-        { season: "FALL", year: 2022 },
+        { season: MediaSeason.Winter, year: 2023 },
+        { season: MediaSeason.Spring, year: 2023 },
+        { season: MediaSeason.Summer, year: 2023 },
+        { season: MediaSeason.Fall, year: 2022 },
       ]);
     });
 
@@ -23,10 +78,10 @@ describe("seasons-service", () => {
       const now = new Date("2023-04-01");
       const relevantSeasons = getRelevantSeasons(now);
       expect(relevantSeasons).toEqual([
-        { season: "WINTER", year: 2023 },
-        { season: "SPRING", year: 2023 },
-        { season: "SUMMER", year: 2023 },
-        { season: "FALL", year: 2023 },
+        { season: MediaSeason.Winter, year: 2023 },
+        { season: MediaSeason.Spring, year: 2023 },
+        { season: MediaSeason.Summer, year: 2023 },
+        { season: MediaSeason.Fall, year: 2023 },
       ]);
     });
 
@@ -34,10 +89,10 @@ describe("seasons-service", () => {
       const now = new Date("2023-07-01");
       const relevantSeasons = getRelevantSeasons(now);
       expect(relevantSeasons).toEqual([
-        { season: "WINTER", year: 2024 },
-        { season: "SPRING", year: 2023 },
-        { season: "SUMMER", year: 2023 },
-        { season: "FALL", year: 2023 },
+        { season: MediaSeason.Winter, year: 2024 },
+        { season: MediaSeason.Spring, year: 2023 },
+        { season: MediaSeason.Summer, year: 2023 },
+        { season: MediaSeason.Fall, year: 2023 },
       ]);
     });
 
@@ -45,10 +100,10 @@ describe("seasons-service", () => {
       const now = new Date("2023-10-01");
       const relevantSeasons = getRelevantSeasons(now);
       expect(relevantSeasons).toEqual([
-        { season: "WINTER", year: 2024 },
-        { season: "SPRING", year: 2024 },
-        { season: "SUMMER", year: 2023 },
-        { season: "FALL", year: 2023 },
+        { season: MediaSeason.Winter, year: 2024 },
+        { season: MediaSeason.Spring, year: 2024 },
+        { season: MediaSeason.Summer, year: 2023 },
+        { season: MediaSeason.Fall, year: 2023 },
       ]);
     });
   });
