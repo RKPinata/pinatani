@@ -5,7 +5,7 @@ import { MediaSeason } from "@/__generated__/graphql";
  *  intended: [winter, spring, summer, fall] with index 0, 1, 2, 3 respectively
  *  This is to make sure that the SEASON constant is in the intended order
  */
-const SEASONS_UNORDERED_WITH_INTENDED_INDEX = Object.values(MediaSeason).map(
+const SEASONS_WITH_INTENDED_INDEX_UNORDERED = Object.values(MediaSeason).map(
   (season: MediaSeason) => {
     return {
       WINTER: {
@@ -27,11 +27,11 @@ const SEASONS_UNORDERED_WITH_INTENDED_INDEX = Object.values(MediaSeason).map(
     }[season];
   }
 );
-const SEASONS_WITH_ORDERED_INDEX = SEASONS_UNORDERED_WITH_INTENDED_INDEX.sort(
+const SEASONS_WITH_INTENDED_INDEX_ORDERED = SEASONS_WITH_INTENDED_INDEX_UNORDERED.sort(
   (a, b) => {
     return a.intendedIndex - b.intendedIndex;
   }
 );
-export const SEASONS = SEASONS_WITH_ORDERED_INDEX.map(
+export const SEASONS = SEASONS_WITH_INTENDED_INDEX_ORDERED.map(
   (season) => season.season
 );
