@@ -9,7 +9,6 @@ function SeasonAnime({
 }: {
   media: NonNullable<TSelectedSeasonsQueryMedia>;
 }) {
-  const [previewLoaded, setPreviewLoaded] = useState<Boolean>(false);
   const [imageLoaded, setImageLoaded] = useState<Boolean>(false);
 
   const imageBgColor = media.coverImage?.color
@@ -18,43 +17,31 @@ function SeasonAnime({
 
   return (
     <div className="max-w-[230px] bg-card rounded-md">
-      <div className="relative w-[160px] h-[240px] sm:w-[200px] sm:h-[300px] rounded-md overflow-hidden ">
-        {/** Preview Image */}
-        <Image
-          src={media.coverImage?.medium ? media.coverImage.medium : ""}
-          alt={`${media.title?.english} cover image`}
-          fill={true}
-          sizes="200px 300px"
-          onLoad={() => setPreviewLoaded(true)}
-          className={cn("z-[1] object-cover object-center", {
-            "blur-sm": previewLoaded,
-          })}
-          style={{
-            backgroundColor: imageBgColor,
-          }} // inline style: tw cant generate classes with dynamic color
-        />
-
-        {/** Full Image */}
+      <div
+        className="relative w-[160px] h-[240px] sm:w-[200px] sm:h-[300px] rounded-md overflow-hidden"
+        style={{
+          backgroundColor: imageBgColor,
+        }} // inline style: tw cant generate classes with dynamic color
+      >
         <Image
           src={media.coverImage?.extraLarge ? media.coverImage.extraLarge : ""}
           alt={`${media.title?.english} cover image`}
           fill={true}
           sizes="200px 300px"
-          onLoad={() => {
-            setImageLoaded(true);
-          }}
+          onLoad={() => setImageLoaded(true)}
           className={cn(
-            "z-[2] object-cover object-center bg-transparent transition-opacity duration-500 ease-in",
+            "z-[1] object-cover object-center transition-opacity duration-500 ease-in",
             {
               "opacity-0": !imageLoaded,
               "opacity-1": imageLoaded,
             }
           )}
         />
+
         {/* Overlay */}
         <Badge
           variant="secondary"
-          className="absolute z-[3] bottom-1 left-2 font-semibold text-foreground"
+          className="absolute z-[2] bottom-1 left-2 font-semibold text-foreground"
         >
           {media.format ? media.format : ""}
         </Badge>
