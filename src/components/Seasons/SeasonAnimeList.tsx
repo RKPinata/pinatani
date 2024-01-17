@@ -28,7 +28,7 @@ function SeasonAnimeList({
   const { loading, data, fetchMore, error } = useQuery(GET_SELECTED_SEASONS, {
     variables: {
       page: 1,
-      perPage: 30,
+      perPage: 16,
       season: selectedSeason.season,
       seasonYear: selectedSeason.year,
     },

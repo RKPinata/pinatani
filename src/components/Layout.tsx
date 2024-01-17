@@ -10,7 +10,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         <meta name="description" content="Pinatani" />
         {/* Other meta tags */}
       </Head>
-      {/* TODO: Remove default dark mode class */}
+      {/* TODO: Remove default dark mode class and replace with theme*/}
       <div className="relative flex flex-col min-h-screen antialiased font-sans dark bg-background">
         {/* TODO: nav */}
         {/* <Navbar /> */}

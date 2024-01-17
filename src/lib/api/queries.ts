@@ -29,7 +29,6 @@ export const GET_SELECTED_SEASONS = gql(`
         }
         coverImage {
           color
-          medium
           extraLarge
         }
         format
