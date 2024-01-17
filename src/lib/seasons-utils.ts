@@ -105,3 +105,16 @@ export function generateParamFromSeasonYearPair(
 
   return `${String(season).toLocaleLowerCase()}-${year}`;
 }
+
+export function isValidSeasonParamFormat(str: string) {
+  /**
+   * ^ asserts the start of the string.
+   * (winter|spring|summer|fall) matches one of the four seasons: winter, spring, summer, or fall.
+   * - matches the hyphen character.
+   * (19|20) matches either "19" or "20".
+   * \d{2} matches exactly two digits.
+   * $ asserts the end of the string.
+   */
+  const regex = /^(winter|spring|summer|fall)-(19|20)\d{2}$/;
+  return regex.test(str);
+}
