@@ -80,11 +80,6 @@ function SeasonAnimeList({
     }
   }, [isIntersecting, data, fetchMore]);
 
-  /* Test */
-  useEffect(() => {
-    console.log(loading);
-  }, [loading]);
-
   /** Check window size
    * TODO: Create a proper definition for screen sizes
    */
@@ -110,11 +105,11 @@ function SeasonAnimeList({
             return null;
           }
           return isTabletAndSmaller ? (
-            <SeasonAnimeInfoDrawer key={anime?.id} media={anime}>
+            <SeasonAnimeInfoDrawer key={index} media={anime}>
               <SeasonAnime media={anime} />
             </SeasonAnimeInfoDrawer>
           ) : (
-            <SeasonAnimeInfoModal key={anime?.id} media={anime}>
+            <SeasonAnimeInfoModal key={index} media={anime}>
               <SeasonAnime media={anime} />
             </SeasonAnimeInfoModal>
           );
