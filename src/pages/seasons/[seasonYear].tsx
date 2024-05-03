@@ -21,8 +21,6 @@ function SeasonYear() {
     return null;
   }
 
-  /** If the seasonYearParam is not a valid season param
-   *  we redirect to the current season */
   const isValidSeasonParam = isValidSeasonParamFormat(seasonYearParam);
   if (!isValidSeasonParam) {
     router.push(`/seasons/${generateParamFromSeasonYearPair(currentSeason)}`);
@@ -30,7 +28,7 @@ function SeasonYear() {
 
   const selectedSeason = extractSeasonAndYearFromParam(seasonYearParam);
 
-  const onSelectSeason = (seasonParam: string): void => {
+  const handleSelectSeason = (seasonParam: string): void => {
     router.push(`/seasons/${seasonParam}`);
   };
 
@@ -39,7 +37,7 @@ function SeasonYear() {
       <SeasonAnimeList
         relevantSeasons={relevantSeasons}
         selectedSeason={selectedSeason}
-        selectSeason={onSelectSeason}
+        handleSelectSeason={handleSelectSeason}
       />
     </PageContainer>
   );

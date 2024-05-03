@@ -1,23 +1,21 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from "@/components/shadcn/ui/dialog";
+import { TSelectedSeasonsQueryMedia } from "@/lib/types/seasons.types";
 
-function SeasonAnimeInfoModal({ children }: { children: React.ReactNode }) {
+type TSeasonAnimeInfoModalProps = {
+  children: React.ReactNode;
+  media: NonNullable<TSelectedSeasonsQueryMedia>;
+};
+
+function SeasonAnimeInfoModal({ children, media }: TSeasonAnimeInfoModalProps) {
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Work in Progress</DialogTitle>
-          <DialogDescription>
-            yes
-          </DialogDescription>
-        </DialogHeader>
+        <div>smth</div>
       </DialogContent>
     </Dialog>
   );

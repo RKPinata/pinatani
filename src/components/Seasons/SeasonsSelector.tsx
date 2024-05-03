@@ -10,24 +10,24 @@ import {
 import { capitalizeFirstLetter } from "@./src/lib/utils";
 import { generateParamFromSeasonYearPair } from "@/lib/seasons-utils";
 
-interface SeasonsSelectorProps {
+interface TSeasonsSelectorProps {
   relevantSeasons: TRelevantSeasons;
   selectedSeason: TSeasonYearPair;
-  selectSeason: (season: string) => void;
+  handleSelectSeason: (season: string) => void;
   className?: string;
 }
 
 function SeasonsSelector({
   relevantSeasons,
   selectedSeason,
-  selectSeason,
+  handleSelectSeason,
   className,
-}: SeasonsSelectorProps) {
+}: TSeasonsSelectorProps) {
   return (
     <div className={className}>
       <Select
         onValueChange={(value: string) => {
-          selectSeason(value);
+          handleSelectSeason(value);
         }}
       >
         <SelectTrigger className="sm:w-[160px] px-5 rounded-full w-full shadow-xl">
