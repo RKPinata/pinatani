@@ -9,7 +9,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         <meta name="description" content="Pinatani" />
         {/* Other meta tags */}
       </Head>
-      <div className="relative flex flex-col min-h-screen antialiased font-sans bg-background">
+      <div className="relative flex flex-col min-h-screen antialiased font-sans">
         {/* TODO: nav */}
         {/* <Navbar /> */}
         <main className="relative flex flex-col flex-grow text-foreground">
