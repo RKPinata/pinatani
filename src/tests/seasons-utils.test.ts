@@ -4,7 +4,7 @@ import {
   getRelevantSeasons,
   getSeasonIndexFromDate,
   getSeasonIndexFromName,
-} from "@root/src/lib/utils/seasons.utils";
+} from "@root/src/lib/utils";
 import { MediaSeason } from "@src/__generated__/graphql";
 
 describe("seasons-service", () => {

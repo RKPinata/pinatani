@@ -1,4 +1,4 @@
-import { cn } from "@root/src/lib/utils/common.utils";
+import { cn } from "@root/src/lib/utils";
 import React from "react";
 
 function MaxWidthContainer({

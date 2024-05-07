@@ -5,7 +5,7 @@ import {
   generateParamFromSeasonYearPair,
   getCurrentAndRelevantSeasons,
   isValidSeasonParamFormat,
-} from "@root/src/lib/utils/seasons.utils";
+} from "@root/src/lib/utils";
 
 import { useRouter } from "next/router";
 
