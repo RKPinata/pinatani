@@ -1,5 +1,3 @@
-import { GET_SELECTED_SEASONS } from "@lib/api/queries";
-
 import { useQuery } from "@apollo/client";
 import { useIntersectionObserver } from "@hooks/useIntersectionObserver";
 import { useWindowSize } from "@hooks/useWindowSize";
@@ -8,6 +6,7 @@ import {
   TSeasonYearPair,
   TSelectedSeasonsQueryMedia,
 } from "@lib/types/seasons.types";
+import { GET_SELECTED_SEASONS } from "@root/src/lib/queries";
 import { useEffect, useMemo, useRef } from "react";
 import SeasonAnime from "./SeasonAnimeCard";
 import SeasonAnimeInfoDrawer from "./SeasonAnimeInfoDrawer";

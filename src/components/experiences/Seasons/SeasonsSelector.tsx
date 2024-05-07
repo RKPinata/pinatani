@@ -5,10 +5,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../shadcn/ui/select";
+} from "../../shadcn/ui/select";
 
-import { generateParamFromSeasonYearPair } from "@lib/seasons-utils";
-import { capitalizeFirstLetter } from "@lib/utils";
+import { capitalizeFirstLetter } from "@root/src/lib/utils/common.utils";
+import { generateParamFromSeasonYearPair } from "@root/src/lib/utils/seasons.utils";
 
 interface TSeasonsSelectorProps {
   relevantSeasons: TRelevantSeasons;

@@ -6,7 +6,7 @@ function Layout({ children }: { children: React.ReactNode }) {
     <>
       <Head>
         <title>Pinatani</title>
-        <meta name="description" content="Pinatani" />
+        <meta name="description" content="Pinatani" />        
         {/* Other meta tags */}
       </Head>
       <div className="relative flex flex-col min-h-screen antialiased font-sans">
