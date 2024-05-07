@@ -4,11 +4,11 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 
-type TSeasonAnimeProps = {
+type TSeasonAnimeCardProps = {
   media: NonNullable<TSelectedSeasonsQueryMedia>;
 };
 
-function SeasonAnime({ media }: TSeasonAnimeProps) {
+function SeasonAnimeCard({ media }: TSeasonAnimeCardProps) {
   const [imageLoaded, setImageLoaded] = useState<Boolean>(false);
 
   const imageBgColor = media.coverImage?.color
@@ -77,4 +77,4 @@ function SeasonAnime({ media }: TSeasonAnimeProps) {
   );
 }
 
-export default SeasonAnime;
+export default SeasonAnimeCard;

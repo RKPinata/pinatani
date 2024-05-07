@@ -9,7 +9,7 @@ import {
 } from "@/lib/types/seasons.types";
 import { useQuery } from "@apollo/client";
 import { useEffect, useMemo, useRef } from "react";
-import SeasonAnime from "./SeasonAnime";
+import SeasonAnime from "./SeasonAnimeCard";
 import SeasonAnimeInfoDrawer from "./SeasonAnimeInfoDrawer";
 import SeasonAnimeInfoModal from "./SeasonAnimeInfoModal";
 import SeasonsSelector from "./SeasonsSelector";
