@@ -1,13 +1,13 @@
-import { GET_SELECTED_SEASONS } from "@/lib/api/queries";
+import { GET_SELECTED_SEASONS } from "@lib/api/queries";
 
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-import { useWindowSize } from "@/hooks/useWindowSize";
+import { useQuery } from "@apollo/client";
+import { useIntersectionObserver } from "@hooks/useIntersectionObserver";
+import { useWindowSize } from "@hooks/useWindowSize";
 import {
   TRelevantSeasons,
   TSeasonYearPair,
   TSelectedSeasonsQueryMedia,
-} from "@/lib/types/seasons.types";
-import { useQuery } from "@apollo/client";
+} from "@lib/types/seasons.types";
 import { useEffect, useMemo, useRef } from "react";
 import SeasonAnime from "./SeasonAnimeCard";
 import SeasonAnimeInfoDrawer from "./SeasonAnimeInfoDrawer";
@@ -83,7 +83,6 @@ function SeasonAnimeList({
   /** Check window size
    * TODO: Create a proper definition for screen sizes
    */
-
   const { width } = useWindowSize();
   const isTabletAndSmaller = useMemo(() => {
     return width <= 640;

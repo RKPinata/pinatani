@@ -1,7 +1,7 @@
 import {
   Get_Selected_SeasonsQuery,
   MediaSeason,
-} from "@/__generated__/graphql";
+} from "@src/__generated__/graphql";
 
 export type TSeason = MediaSeason;
 

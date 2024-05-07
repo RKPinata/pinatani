@@ -1,11 +1,11 @@
-import SeasonAnimeList from "@/components/Seasons/SeasonAnimeList";
-import PageContainer from "@/components/UI/PageContainer";
+import SeasonAnimeList from "@components/Seasons/SeasonAnimeList";
+import PageContainer from "@components/UI/PageContainer";
 import {
   extractSeasonAndYearFromParam,
   generateParamFromSeasonYearPair,
   getCurrentAndRelevantSeasons,
   isValidSeasonParamFormat,
-} from "@/lib/seasons-utils";
+} from "@lib/seasons-utils";
 
 import { useRouter } from "next/router";
 

@@ -1,4 +1,4 @@
-import { Button } from "@/components/shadcn/ui/button";
+import { Button } from "@components/shadcn/ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -7,8 +7,8 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/shadcn/ui/drawer";
-import { TSelectedSeasonsQueryMedia } from "@/lib/types/seasons.types";
+} from "@components/shadcn/ui/drawer";
+import { TSelectedSeasonsQueryMedia } from "@lib/types/seasons.types";
 
 import React from "react";
 

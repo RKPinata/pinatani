@@ -1,8 +1,8 @@
-import MaxWidthContainer from "@/components/UI/MaxWidthContainer";
+import MaxWidthContainer from "@components/UI/MaxWidthContainer";
 import {
   generateParamFromSeasonYearPair,
   getCurrentAndRelevantSeasons,
-} from "@/lib/seasons-utils";
+} from "@lib/seasons-utils";
 
 import { GetServerSideProps } from "next";
 

@@ -40,5 +40,6 @@ next-env.d.ts
 # lock files
 yarn.lock
 package-lock.json
+bun.lockb
 
 .notes.md

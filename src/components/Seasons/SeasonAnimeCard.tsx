@@ -1,6 +1,6 @@
-import { Badge } from "@/components/shadcn/ui/badge";
-import { TSelectedSeasonsQueryMedia } from "@/lib/types/seasons.types";
-import { cn } from "@/lib/utils";
+import { Badge } from "@components/shadcn/ui/badge";
+import { TSelectedSeasonsQueryMedia } from "@lib/types/seasons.types";
+import { cn } from "@lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 

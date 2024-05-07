@@ -1,7 +1,7 @@
 import {
   generateParamFromSeasonYearPair,
   getCurrentAndRelevantSeasons,
-} from "@/lib/seasons-utils";
+} from "@lib/seasons-utils";
 
 /**
  * This Page never gets rendered, it only redirects to the current season.

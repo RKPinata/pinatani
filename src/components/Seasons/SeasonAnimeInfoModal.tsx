@@ -2,8 +2,8 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
-} from "@/components/shadcn/ui/dialog";
-import { TSelectedSeasonsQueryMedia } from "@/lib/types/seasons.types";
+} from "@components/shadcn/ui/dialog";
+import { TSelectedSeasonsQueryMedia } from "@lib/types/seasons.types";
 
 type TSeasonAnimeInfoModalProps = {
   children: React.ReactNode;
