@@ -43,5 +43,3 @@ export type TSelectedSeasonsQueryPage = NonNullable<
 export type TSelectedSeasonsQueryMedia = NonNullable<
   TSelectedSeasonsQueryPage["media"]
 >[number];
-
-

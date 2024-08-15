@@ -1,3 +1,4 @@
+import { MediaTitle } from "@root/src/__generated__/graphql";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -15,11 +16,11 @@ import { twMerge } from "tailwind-merge";
  * @example
  * cn(
  *   "tw-class1 tw-class2",   // this classes are always applied
- *   { 
+ *   {
  *     "tw-class3": true,     // this class is applied because the value is true
  *     "anotherClass": false, // this class is not applied because the value is false
  *   }
- * ) 
+ * )
  * // returns "tw-class1 tw-class2 tw-class3"
  */
 export function cn(...inputs: ClassValue[]) {
@@ -29,3 +30,9 @@ export function cn(...inputs: ClassValue[]) {
 export function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
+
+export const getPreferredMediaTitle = (title: MediaTitle) => {
+  return (
+    title?.english || title?.romaji || title?.native || "Title Unavailable"
+  );
+};

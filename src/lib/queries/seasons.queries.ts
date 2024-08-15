@@ -45,6 +45,11 @@ const GET_SELECTED_SEASONS = gql(`
           month
           year
         }
+        endDate {
+          day
+          month
+          year
+        }
       }
     }
   }

@@ -50,7 +50,7 @@ function SeasonAnimeCard({ media }: TSeasonAnimeCardProps) {
       {/** Content */}
       <div className="px-3 py-3 flex flex-col gap-3">
         <div className="border-b pb-3">
-          <h3 className="h-[40px] overflow-hidden line-clamp-2 text-sm font-semibold text-stone-300">
+          <h3 className="h-[40px] overflow-hidden line-clamp-2 text-sm font-semibold text-foreground">
             {media.title?.english ||
               media.title?.romaji ||
               media.title?.native ||
@@ -59,13 +59,17 @@ function SeasonAnimeCard({ media }: TSeasonAnimeCardProps) {
         </div>
         <div className="flex flex-wrap items-start gap-1 h-[48px] overflow-hidden">
           {media.genres?.length === 0 ? (
-            <Badge variant="secondary" className="text-stone-400">
+            <Badge variant="outline" className="text-muted-foreground">
               Unknown
             </Badge>
           ) : (
             media.genres?.map((genre) => {
               return (
-                <Badge variant="outline" key={genre} className="text-stone-400">
+                <Badge
+                  variant="secondary"
+                  key={genre}
+                  className="text-muted-foreground"
+                >
                   {genre}
                 </Badge>
               );

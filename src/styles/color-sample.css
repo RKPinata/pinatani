@@ -1,0 +1,148 @@
+.sample-dark-theme {
+  /* --background
+     Meaning: This color is used for the main background of the application or website.
+     Common Use Case: Setting the primary background color of the entire page or application, providing a base upon which other elements are layered.
+  */
+  --background: hsl(20, 14.3%, 4.1%);
+
+  /* --foreground
+     Meaning: This color is used for the main text and primary content color against the background.
+     Common Use Case: Ensuring that text and other foreground elements are readable against the background color.
+  */
+  --foreground: hsl(0, 0%, 95%);
+
+  /* --card
+     Meaning: This color is used for card components, which are discrete containers for content.
+     Common Use Case: Setting the background color of card elements, which might be used for grouping related information or actions.
+  */
+  --card: hsl(24, 9.8%, 10%);
+
+  /* --card-foreground
+     Meaning: This color is used for text and elements within card components.
+     Common Use Case: Ensuring that text and other content within a card are readable against the card background color.
+  */
+  --card-foreground: hsl(0, 0%, 95%);
+
+  /* --popover
+     Meaning: This color is used for popover elements, which are small overlays of content.
+     Common Use Case: Setting the background color of popover elements, which might be used for tooltips, dropdowns, or other transient content displays.
+  */
+  --popover: hsl(0, 0%, 9%);
+
+  /* --popover-foreground
+     Meaning: This color is used for text and elements within popover components.
+     Common Use Case: Ensuring that text and other content within a popover are readable against the popover background color.
+  */
+  --popover-foreground: hsl(0, 0%, 95%);
+
+  /* --primary
+     Meaning: This color is used for primary actions and highlights, often the main brand color.
+     Common Use Case: Highlighting primary buttons, links, or important elements that need to stand out and attract user attention.
+  */
+  --primary: hsl(346.8, 77.2%, 49.8%);
+
+  /* --primary-foreground
+     Meaning: This color is used for text and elements on primary-colored backgrounds.
+     Common Use Case: Ensuring that text and other content on primary-colored elements are readable.
+  */
+  --primary-foreground: hsl(355.7, 100%, 97.3%);
+
+  /* --secondary
+     Meaning: This color is used for secondary actions or less prominent elements.
+     Common Use Case: Highlighting secondary buttons or elements that are not the primary focus but still need visual distinction.
+  */
+  --secondary: hsl(240, 3.7%, 15.9%);
+
+  /* --secondary-foreground
+     Meaning: This color is used for text and elements on secondary-colored backgrounds.
+     Common Use Case: Ensuring that text and other content on secondary-colored elements are readable.
+  */
+  --secondary-foreground: hsl(0, 0%, 98%);
+
+  /* --muted
+     Meaning: This color is used for muted elements, which should be less prominent.
+     Common Use Case: Setting the background color of less important elements, such as disabled buttons, secondary information, or subtle dividers.
+  */
+  --muted: hsl(0, 0%, 15%);
+
+  /* --muted-foreground
+     Meaning: This color is used for text and elements on muted-colored backgrounds.
+     Common Use Case: Ensuring that text and other content on muted-colored elements are readable.
+  */
+  --muted-foreground: hsl(240, 5%, 64.9%);
+
+  /* --accent
+     Meaning: This color is used for accent elements, which provide visual interest or highlights.
+     Common Use Case: Highlighting special elements, notifications, or areas that need to draw attention without being primary actions.
+  */
+  --accent: hsl(12, 6.5%, 15.1%);
+
+  /* --accent-foreground
+     Meaning: This color is used for text and elements on accent-colored backgrounds.
+     Common Use Case: Ensuring that text and other content on accent-colored elements are readable.
+  */
+  --accent-foreground: hsl(0, 0%, 98%);
+
+  /* --destructive
+     Meaning: This color is used for destructive or dangerous actions, such as delete or remove actions.
+     Common Use Case: Highlighting buttons or elements associated with actions that have significant consequences or should be used with caution.
+  */
+  --destructive: hsl(0, 62.8%, 30.6%);
+
+  /* --destructive-foreground
+     Meaning: This color is used for text and elements on destructive-colored backgrounds.
+     Common Use Case: Ensuring that text and other content on destructive-colored elements are readable.
+  */
+  --destructive-foreground: hsl(0, 85.7%, 97.3%);
+
+  /* --border
+     Meaning: This color is used for borders of elements.
+     Common Use Case: Defining the color of borders around containers, inputs, buttons, or other elements.
+  */
+  --border: hsl(240, 3.7%, 15.9%);
+
+  /* --input
+     Meaning: This color is used for input fields.
+     Common Use Case: Setting the background color of input fields, making sure they stand out against the surrounding content.
+  */
+  --input: hsl(240, 3.7%, 15.9%);
+
+  /* --ring
+     Meaning: This color is used for focus rings or outlines around elements when they receive focus.
+     Common Use Case: Highlighting elements when they are focused (e.g., when a user tabs to a button or input field), improving accessibility by making it clear which element is currently active.
+  */
+  --ring: hsl(346.8, 77.2%, 49.8%);
+}
+
+.sample-custom-theme {
+  --gradient: #e43a15;
+
+  --background: hsl(11, 53.949999999999996%, 3.92%);
+  --foreground: hsl(11, 8.299999999999999%, 97.45%);
+
+  --muted: hsl(11, 41.5%, 14.7%);
+  --muted-foreground: hsl(11, 8.299999999999999%, 54.9%);
+
+  --popover: hsl(11, 48.400000000000006%, 6.37%);
+  --popover-foreground: hsl(11, 8.299999999999999%, 97.45%);
+
+  --card: hsl(11, 48.400000000000006%, 6.37%);
+  --card-foreground: hsl(11, 8.299999999999999%, 97.45%);
+
+  --border: hsl(11, 41.5%, 14.7%);
+  --input: hsl(11, 41.5%, 14.7%);
+
+  --primary: hsl(11, 83%, 49%);
+  --primary-foreground: hsl(11, 8.299999999999999%, 4.9%);
+
+  --secondary: hsl(11, 41.5%, 14.7%);
+  --secondary-foreground: hsl(11, 8.299999999999999%, 97.45%);
+
+  --accent: hsl(11, 41.5%, 14.7%);
+  --accent-foreground: hsl(11, 8.299999999999999%, 97.45%);
+
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(11, 8.299999999999999%, 97.45%);
+
+  --ring: hsl(11, 83%, 49%);
+}

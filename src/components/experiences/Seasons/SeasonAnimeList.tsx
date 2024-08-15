@@ -1,16 +1,16 @@
 import { useQuery } from "@apollo/client";
 import { useIntersectionObserver } from "@hooks/useIntersectionObserver";
-import { useWindowSize } from "@hooks/useWindowSize";
 import {
   TRelevantSeasons,
   TSeasonYearPair,
   TSelectedSeasonsQueryMedia,
 } from "@lib/types/seasons.types";
+import { useScreenSize } from "@root/src/hooks/useScreenSize";
 import { GET_SELECTED_SEASONS } from "@root/src/lib/queries";
 import { useEffect, useMemo, useRef } from "react";
 import SeasonAnime from "./SeasonAnimeCard";
-import SeasonAnimeInfoDrawer from "./SeasonAnimeInfoDrawer";
-import SeasonAnimeInfoModal from "./SeasonAnimeInfoModal";
+import SeasonAnimeInfoDrawer from "./SeasonAnimeInfo/SeasonAnimeInfoDrawer";
+import SeasonAnimeInfoModal from "./SeasonAnimeInfo/SeasonAnimeInfoModal";
 import SeasonsSelector from "./SeasonsSelector";
 
 interface TSeasonAnimeListProps {
@@ -24,7 +24,7 @@ function SeasonAnimeList({
   selectedSeason,
   handleSelectSeason,
 }: TSeasonAnimeListProps) {
-  const { loading, data, fetchMore, error } = useQuery(GET_SELECTED_SEASONS, {
+  const { loading, data, fetchMore} = useQuery(GET_SELECTED_SEASONS, {
     variables: {
       page: 1,
       perPage: 16,
@@ -49,7 +49,7 @@ function SeasonAnimeList({
   }, [data]);
 
   useEffect(() => {
-    const shouldLoadMore = data?.Page?.pageInfo?.hasNextPage;
+    const shouldLoadMore = data?.Page?.pageInfo?.hasNextPage && isIntersecting;
 
     if (shouldLoadMore) {
       fetchMore({
@@ -79,13 +79,7 @@ function SeasonAnimeList({
     }
   }, [isIntersecting, data, fetchMore]);
 
-  /** Check window size
-   * TODO: Create a proper definition for screen sizes
-   */
-  const { width } = useWindowSize();
-  const isTabletAndSmaller = useMemo(() => {
-    return width <= 640;
-  }, [width]);
+  const { device } = useScreenSize();
 
   return (
     <div className="grid justify-center grid-cols-seasonListMobile gap-4 sm:grid-cols-seasonListSm sm:gap-4 md:gap-5 lg:grid-cols-seasonListLg xl:gap-6">
@@ -102,7 +96,7 @@ function SeasonAnimeList({
           if (anime === null) {
             return null;
           }
-          return isTabletAndSmaller ? (
+          return device === "mobile" ? (
             <SeasonAnimeInfoDrawer key={index} media={anime}>
               <SeasonAnime media={anime} />
             </SeasonAnimeInfoDrawer>
