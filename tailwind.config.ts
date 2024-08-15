@@ -72,6 +72,11 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontFamily: {
+        spaceGrotesk: ["var(--font-space-grotesk)"],
+        skModernist: ["var(--font-sk-modernist)"],
+        wildWorld: ["var(--font-wild-world)"],
+      },
       gridTemplateColumns: {
         seasonListMobile: "repeat(2, minmax(0, 160px))",
         seasonListSm: "repeat(3, minmax(0, 200px))",
