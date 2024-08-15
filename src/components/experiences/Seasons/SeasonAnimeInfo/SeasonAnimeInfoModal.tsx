@@ -37,7 +37,7 @@ function SeasonAnimeInfoModal({ children, media }: TSeasonAnimeInfoModalProps) {
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="w-xl max-w-xl flex flex-col items-center">
-        <Title className="text-foreground">
+        <Title color="foreground">
           {getPreferredMediaTitle(title!)}
         </Title>
         <div className="flex w-full bg-card rounded-md">
