@@ -32,5 +32,5 @@ bun dev
 git checkout -b your-feature-name
 ```
 2. Commit your feature and push. 
-3. Create a pull request to merge.
-4. Ask RKPinata if unsure
+3. Create a pull request to main.
+4. DO NOT DIRECTLY PUSH TO MAIN
