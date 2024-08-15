@@ -2,24 +2,24 @@ import { Fonts } from "@lib/constants";
 import type { Color, Font } from "@lib/types";
 import { Typography } from "./Typography";
 
-type TitleProps = {
+type HeadingProps = {
   font?: Font;
   color?: Color;
   className?: string;
   children: React.ReactNode;
 };
 
-const Title: React.FC<TitleProps> = ({
-  font = Fonts.SK_MODERNIST,
+const Heading: React.FC<HeadingProps> = ({
+  font = Fonts.WILD_WORLD,
   color,
   className,
   children,
 }) => {
   return (
     <Typography
-      as="h1"
+      as="h2"
       font={font}
-      size="text-2xl"
+      size="text-4xl"
       className={className}
       color={color}
     >
@@ -28,4 +28,4 @@ const Title: React.FC<TitleProps> = ({
   );
 };
 
-export { Title };
+export { Heading };
