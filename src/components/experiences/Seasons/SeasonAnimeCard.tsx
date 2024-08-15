@@ -1,14 +1,14 @@
-import { Badge } from "@/components/shadcn/ui/badge";
-import { TSelectedSeasonsQueryMedia } from "@/lib/types/seasons.types";
-import { cn } from "@/lib/utils";
+import { Badge } from "@components/shadcn/ui/badge";
+import { TSelectedSeasonsQueryMedia } from "@lib/types/seasons.types";
+import { cn } from "@root/src/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 
-function SeasonAnime({
-  media,
-}: {
+type TSeasonAnimeCardProps = {
   media: NonNullable<TSelectedSeasonsQueryMedia>;
-}) {
+};
+
+function SeasonAnimeCard({ media }: TSeasonAnimeCardProps) {
   const [imageLoaded, setImageLoaded] = useState<Boolean>(false);
 
   const imageBgColor = media.coverImage?.color
@@ -50,7 +50,7 @@ function SeasonAnime({
       {/** Content */}
       <div className="px-3 py-3 flex flex-col gap-3">
         <div className="border-b pb-3">
-          <h3 className="h-[40px] overflow-hidden line-clamp-2 text-sm font-semibold text-stone-300">
+          <h3 className="h-[40px] overflow-hidden line-clamp-2 text-sm font-semibold text-foreground">
             {media.title?.english ||
               media.title?.romaji ||
               media.title?.native ||
@@ -59,13 +59,17 @@ function SeasonAnime({
         </div>
         <div className="flex flex-wrap items-start gap-1 h-[48px] overflow-hidden">
           {media.genres?.length === 0 ? (
-            <Badge variant="secondary" className="text-stone-400">
+            <Badge variant="outline" className="text-muted-foreground">
               Unknown
             </Badge>
           ) : (
             media.genres?.map((genre) => {
               return (
-                <Badge variant="outline" key={genre} className="text-stone-400">
+                <Badge
+                  variant="secondary"
+                  key={genre}
+                  className="text-muted-foreground"
+                >
                   {genre}
                 </Badge>
               );
@@ -77,4 +81,4 @@ function SeasonAnime({
   );
 }
 
-export default SeasonAnime;
+export default SeasonAnimeCard;

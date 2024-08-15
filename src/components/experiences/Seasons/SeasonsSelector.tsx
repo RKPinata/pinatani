@@ -1,33 +1,35 @@
-import { TRelevantSeasons, TSeasonYearPair } from "@/lib/types/seasons.types";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../shadcn/ui/select";
+} from "@components/shadcn/ui/select";
+import { TRelevantSeasons, TSeasonYearPair } from "@lib/types/seasons.types";
 
-import { capitalizeFirstLetter } from "@./src/lib/utils";
-import { generateParamFromSeasonYearPair } from "@/lib/seasons-utils";
+import {
+  capitalizeFirstLetter,
+  generateParamFromSeasonYearPair,
+} from "@root/src/lib/utils";
 
-interface SeasonsSelectorProps {
+interface TSeasonsSelectorProps {
   relevantSeasons: TRelevantSeasons;
   selectedSeason: TSeasonYearPair;
-  selectSeason: (season: string) => void;
+  handleSelectSeason: (season: string) => void;
   className?: string;
 }
 
 function SeasonsSelector({
   relevantSeasons,
   selectedSeason,
-  selectSeason,
+  handleSelectSeason,
   className,
-}: SeasonsSelectorProps) {
+}: TSeasonsSelectorProps) {
   return (
     <div className={className}>
       <Select
         onValueChange={(value: string) => {
-          selectSeason(value);
+          handleSelectSeason(value);
         }}
       >
         <SelectTrigger className="sm:w-[160px] px-5 rounded-full w-full shadow-xl">

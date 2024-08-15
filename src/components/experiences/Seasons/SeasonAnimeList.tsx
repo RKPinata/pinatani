@@ -1,31 +1,30 @@
-import { GET_SELECTED_SEASONS } from "@/lib/api/queries";
-
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-import { useWindowSize } from "@/hooks/useWindowSize";
+import { useQuery } from "@apollo/client";
+import { useIntersectionObserver } from "@hooks/useIntersectionObserver";
 import {
   TRelevantSeasons,
   TSeasonYearPair,
   TSelectedSeasonsQueryMedia,
-} from "@/lib/types/seasons.types";
-import { useQuery } from "@apollo/client";
+} from "@lib/types/seasons.types";
+import { useScreenSize } from "@root/src/hooks/useScreenSize";
+import { GET_SELECTED_SEASONS } from "@root/src/lib/queries";
 import { useEffect, useMemo, useRef } from "react";
-import SeasonAnime from "./SeasonAnime";
-import SeasonAnimeInfoDrawer from "./SeasonAnimeInfoDrawer";
-import SeasonAnimeInfoModal from "./SeasonAnimeInfoModal";
+import SeasonAnime from "./SeasonAnimeCard";
+import SeasonAnimeInfoDrawer from "./SeasonAnimeInfo/SeasonAnimeInfoDrawer";
+import SeasonAnimeInfoModal from "./SeasonAnimeInfo/SeasonAnimeInfoModal";
 import SeasonsSelector from "./SeasonsSelector";
 
-interface SeasonAnimeListProps {
+interface TSeasonAnimeListProps {
   relevantSeasons: TRelevantSeasons;
   selectedSeason: TSeasonYearPair;
-  selectSeason: (season: string) => void;
+  handleSelectSeason: (season: string) => void;
 }
 
 function SeasonAnimeList({
   relevantSeasons,
   selectedSeason,
-  selectSeason,
-}: SeasonAnimeListProps) {
-  const { loading, data, fetchMore, error } = useQuery(GET_SELECTED_SEASONS, {
+  handleSelectSeason,
+}: TSeasonAnimeListProps) {
+  const { loading, data, fetchMore} = useQuery(GET_SELECTED_SEASONS, {
     variables: {
       page: 1,
       perPage: 16,
@@ -45,24 +44,34 @@ function SeasonAnimeList({
   });
   const isIntersecting = useMemo(() => entry?.isIntersecting || false, [entry]);
 
+  const animeList = useMemo(() => {
+    return data?.Page?.media || [];
+  }, [data]);
+
   useEffect(() => {
-    if (isIntersecting && data?.Page?.pageInfo?.hasNextPage) {
+    const shouldLoadMore = data?.Page?.pageInfo?.hasNextPage && isIntersecting;
+
+    if (shouldLoadMore) {
       fetchMore({
         variables: {
           page: data?.Page?.pageInfo?.currentPage! + 1,
         },
-        // The updateQuery function is used to merge the result of the new query with the existing data.
+        // The updateQuery method is used to merge the result of the new query with the existing data.
         updateQuery: (prevData, { fetchMoreResult }) => {
           if (!fetchMoreResult) return prevData;
+
+          const newPageInfo = fetchMoreResult.Page?.pageInfo;
+          const newMediaArray = [
+            ...(prevData.Page?.media ? prevData.Page?.media : []),
+            ...(fetchMoreResult.Page?.media || []),
+          ];
+
           return {
             ...prevData,
             Page: {
               ...prevData.Page,
-              pageInfo: fetchMoreResult.Page?.pageInfo,
-              media: [
-                ...(prevData.Page?.media ? prevData.Page?.media : []),
-                ...(fetchMoreResult.Page?.media || []),
-              ],
+              pageInfo: newPageInfo,
+              media: newMediaArray,
             },
           };
         },
@@ -70,39 +79,33 @@ function SeasonAnimeList({
     }
   }, [isIntersecting, data, fetchMore]);
 
-  /** Check window size */
-  const { width } = useWindowSize();
-  const isTabletAndSmaller = useMemo(() => {
-    return width <= 640;
-  }, [width]);
+  const { device } = useScreenSize();
 
   return (
     <div className="grid justify-center grid-cols-seasonListMobile gap-4 sm:grid-cols-seasonListSm sm:gap-4 md:gap-5 lg:grid-cols-seasonListLg xl:gap-6">
       <SeasonsSelector
         relevantSeasons={relevantSeasons}
         selectedSeason={selectedSeason}
-        selectSeason={selectSeason}
+        handleSelectSeason={handleSelectSeason}
         className="sticky z-10 top-4 md:top-10 col-span-2 sm:col-span-3 lg:col-span-4"
       />
       {loading ? (
         <p>Loading...</p>
-      ) : data?.Page?.media ? (
-        data?.Page?.media?.map((anime: TSelectedSeasonsQueryMedia) => {
+      ) : (
+        animeList.map((anime: TSelectedSeasonsQueryMedia, index) => {
           if (anime === null) {
             return null;
           }
-          return isTabletAndSmaller ? (
-            <SeasonAnimeInfoDrawer key={anime?.id}>
-              <SeasonAnime key={anime?.id} media={anime} />
+          return device === "mobile" ? (
+            <SeasonAnimeInfoDrawer key={index} media={anime}>
+              <SeasonAnime media={anime} />
             </SeasonAnimeInfoDrawer>
           ) : (
-            <SeasonAnimeInfoModal key={anime?.id}>
-              <SeasonAnime key={anime?.id} media={anime} />
+            <SeasonAnimeInfoModal key={index} media={anime}>
+              <SeasonAnime media={anime} />
             </SeasonAnimeInfoModal>
           );
         })
-      ) : (
-        <p>No anime found</p>
       )}
       {/* TODO: Loading animation */}
       <div ref={bottomBoundaryRef} aria-hidden="true"></div>

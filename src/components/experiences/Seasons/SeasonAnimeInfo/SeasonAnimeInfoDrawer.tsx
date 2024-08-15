@@ -1,4 +1,4 @@
-import { Button } from "@/components/shadcn/ui/button";
+import { Button } from "@components/shadcn/ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -6,17 +6,26 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger
-} from "@/components/shadcn/ui/drawer";
+  DrawerTrigger,
+} from "@components/shadcn/ui/drawer";
+import { TSelectedSeasonsQueryMedia } from "@lib/types/seasons.types";
 
 import React from "react";
 
-function SeasonAnimeInfoDrawer({ children }: { children: React.ReactNode }) {
+type TseasonAnimeInfoDrawerProps = {
+  children: React.ReactNode;
+  media: NonNullable<TSelectedSeasonsQueryMedia>;
+};
+
+function SeasonAnimeInfoDrawer({
+  children,
+  media,
+}: TseasonAnimeInfoDrawerProps) {
   return (
     <Drawer>
       <DrawerTrigger>{children}</DrawerTrigger>
       <DrawerContent className="h-[60vh]">
-        <DrawerHeader >
+        <DrawerHeader>
           <DrawerTitle>Work in Progress</DrawerTitle>
         </DrawerHeader>
         <DrawerFooter>

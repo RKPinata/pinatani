@@ -1,4 +1,4 @@
-import { MediaSeason } from "@/__generated__/graphql";
+import { MediaSeason } from "@src/__generated__/graphql";
 
 /** Intention:
  *  Generated MediaSeason is not in intended order

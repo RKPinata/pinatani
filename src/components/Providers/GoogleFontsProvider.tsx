@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@lib/utils";
 import { spaceGrotesk } from "@public/fonts/fonts-provider";
 
 function GoogleFontsProvider({ children }: { children: React.ReactNode }) {

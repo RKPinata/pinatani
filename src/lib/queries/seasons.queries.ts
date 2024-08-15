@@ -1,6 +1,6 @@
-import { gql } from "@/__generated__/gql";
+import { gql } from "@src/__generated__/gql";
 
-export const GET_SELECTED_SEASONS = gql(`
+const GET_SELECTED_SEASONS = gql(`
   query GET_SELECTED_SEASONS(
     $page: Int
     $perPage: Int
@@ -45,7 +45,14 @@ export const GET_SELECTED_SEASONS = gql(`
           month
           year
         }
+        endDate {
+          day
+          month
+          year
+        }
       }
     }
   }
 `);
+
+export { GET_SELECTED_SEASONS };
